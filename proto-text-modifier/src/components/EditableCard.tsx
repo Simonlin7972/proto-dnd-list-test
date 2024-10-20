@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from 'react';
+// import './styles/globals.css';
+
 
 interface EditableCardProps {
   initialText?: string;
@@ -8,7 +10,7 @@ interface EditableCardProps {
 
 const EditableCard: React.FC<EditableCardProps> = ({ initialText = '', onTextChange, className = '' }) => {
   const [text, setText] = useState(initialText);
-  const [fontSize, setFontSize] = useState(16);
+  const [fontSize, setFontSize] = useState(24);
   const [letterSpacing, setLetterSpacing] = useState(0);
   const [lineHeight, setLineHeight] = useState(1.5);
 
@@ -31,6 +33,16 @@ const EditableCard: React.FC<EditableCardProps> = ({ initialText = '', onTextCha
   const handleLineHeightChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setLineHeight(Number(e.target.value));
   }, []);
+
+  const handleReset = useCallback(() => {
+    setText(initialText);
+    setFontSize(24);
+    setLetterSpacing(0);
+    setLineHeight(1.5);
+    if (onTextChange) {
+      onTextChange(initialText);
+    }
+  }, [initialText, onTextChange]);
 
   return (
     <div className={`${className} max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden`}>
@@ -55,7 +67,7 @@ const EditableCard: React.FC<EditableCardProps> = ({ initialText = '', onTextCha
           </div>
           <input
             type="range"
-            min="16"
+            min="12"
             max="48"
             value={fontSize}
             onChange={handleFontSizeChange}
@@ -92,6 +104,12 @@ const EditableCard: React.FC<EditableCardProps> = ({ initialText = '', onTextCha
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           />
         </div>
+        <button
+          onClick={handleReset}
+          className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          重設
+        </button>
       </div>
     </div>
   );
