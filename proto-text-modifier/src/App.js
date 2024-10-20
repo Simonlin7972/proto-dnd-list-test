@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './styles/globals.css';
 import EditableCard from './components/EditableCard';
+import '@fontsource/noto-sans-tc';
+import '@fontsource/noto-serif-tc';
+import '@fontsource/roboto';
 
 function App() {
-  const [title, setTitle] = useState("請在這邊輸入文字，可以調整字體大小、字距、行高");
+  const [title, setTitle] = useState("");
 
   const handleTitleChange = (newTitle) => {
     setTitle(newTitle);
@@ -15,7 +18,7 @@ function App() {
         <EditableCard
           initialText={title}
           onTextChange={handleTitleChange}
-          className="text-3xl font-bold mb-6 text-center"
+          className="text-3xl font-bold text-black mb-6 text-center"
         />
       </div>
     </div>
