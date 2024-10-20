@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // 確保 Tailwind 可以找到你的文件
   ],
